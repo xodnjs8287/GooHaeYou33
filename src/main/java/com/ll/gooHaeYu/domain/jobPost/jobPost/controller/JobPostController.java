@@ -112,4 +112,17 @@ public class JobPostController {
 
         return ResponseEntity.noContent().build();
     }
+
+
+    @GetMapping("/search")
+    @Operation(summary = "게시물 검색")
+    public ResponseEntity<List<JobPostDto>> searchJobPostsByTitleAndBody(
+            @RequestParam(required = false, name = "titleOrBody") String titleOrBody,
+            @RequestParam(required = false, name = "title") String title,
+            @RequestParam(required = false, name = "body") String body) {
+
+        return ResponseEntity.ok(jobPostService.searchJobPostsByTitleAndBody(titleOrBody, title, body));
+    }
+
+
 }
